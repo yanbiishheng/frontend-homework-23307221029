@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>作业三导航 - 张妍</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+      color: #fff;
+      background: linear-gradient(135deg, #111827, #7f1d1d 55%, #be123c);
+      background-attachment: fixed;
+    }
+
+    .page {
+      width: min(1180px, 92%);
+      margin: 0 auto;
+      padding: 54px 0;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+      margin-bottom: 40px;
+    }
+
+    .back {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 700;
+      transition: transform .2s ease;
+    }
+
+    .back:hover {
+      transform: translateX(-4px);
+    }
+
+    .tag {
+      padding: 7px 14px;
+      border: 1px solid rgba(255, 255, 255, .26);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .1);
+      font-size: 13px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 38px;
+    }
+
+    h1 {
+      margin: 0 0 12px;
+      font-size: clamp(30px, 5vw, 46px);
+    }
+
+    header p {
+      margin: 0;
+      color: rgba(255, 255, 255, .72);
+      line-height: 1.8;
+    }
+
+    .cards {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 22px;
+    }
+
+    .card {
+      flex: 1 1 310px;
+      max-width: 360px;
+      min-height: 235px;
+      padding: 28px;
+      color: #fff;
+      text-decoration: none;
+      border: 1px solid rgba(255, 255, 255, .2);
+      border-radius: 22px;
+      background: linear-gradient(145deg, rgba(255, 255, 255, .16), rgba(255, 255, 255, .06));
+      box-shadow: 0 18px 48px rgba(0, 0, 0, .24);
+      backdrop-filter: blur(12px);
+      transition: transform .28s ease, box-shadow .28s ease, background .28s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      background: linear-gradient(145deg, rgba(255, 255, 255, .24), rgba(255, 255, 255, .1));
+      box-shadow: 0 26px 60px rgba(0, 0, 0, .36);
+    }
+
+    .icon {
+      font-size: 38px;
+      margin-bottom: 20px;
+    }
+
+    .card h2 {
+      margin: 0 0 12px;
+      font-size: 22px;
+    }
+
+    .card p {
+      margin: 0 0 22px;
+      color: rgba(255, 255, 255, .74);
+      line-height: 1.7;
+      font-size: 14px;
+    }
+
+    .open {
+      color: #fecdd3;
+      font-weight: 700;
+    }
+
+    @media (max-width: 680px) {
+      .page {
+        padding: 34px 0;
+      }
+
+      .topbar {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <div class="topbar">
+      <a class="back" href="../">← 返回总导航</a>
+      <span class="tag">23307221029 张妍</span>
+    </div>
+
+    <header>
+      <h1>作业三 · 综合练习</h1>
+      <p>五个独立页面均保留，便于逐题查看与单独修改。</p>
+    </header>
+
+    <section class="cards" aria-label="作业三页面导航">
+      <a class="card" href="jd_carousel.html">
+        <div class="icon">🎞️</div>
+        <h2>京东轮播效果</h2>
+        <p>自动轮播、左右切换、圆点导航和鼠标悬停暂停。</p>
+        <div class="open">打开页面 →</div>
+      </a>
+
+      <a class="card" href="cosmetics_list.html">
+        <div class="icon">💄</div>
+        <h2>彩妆热卖产品列表</h2>
+        <p>使用 Flex 网格展示多款彩妆商品卡片。</p>
+        <div class="open">打开页面 →</div>
+      </a>
+
+      <a class="card" href="bdqn_reg.html">
+        <div class="icon">📱</div>
+        <h2>北大青鸟注册</h2>
+        <p>品牌展示区与注册表单组成的左右布局页面。</p>
+        <div class="open">打开页面 →</div>
+      </a>
+
+      <a class="card" href="jd_homework.html">
+        <div class="icon">🏠</div>
+        <h2>京东注册 + 家电</h2>
+        <p>京东风格注册表单和家用电器商品列表。</p>
+        <div class="open">打开页面 →</div>
+      </a>
+
+      <a class="card" href="calculator.html">
+        <div class="icon">🧮</div>
+        <h2>JS 四则运算</h2>
+        <p>支持加减乘除、输入校验和除数为零提示。</p>
+        <div class="open">打开页面 →</div>
+      </a>
+    </section>
+  </main>
+</body>
+</html>

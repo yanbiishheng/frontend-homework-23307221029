@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>中心动态</title>
+<style>
+  body { font-family: "Microsoft YaHei", sans-serif; background: #f7f9fc; margin: 0; padding: 30px; }
+  .container { max-width: 900px; margin: 0 auto; background: #fff; border-radius: 12px; padding: 30px; box-shadow: 0 4px 20px rgba(0,0,0,.06); }
+  h1 { font-size: 26px; color: #1a237e; border-bottom: 3px solid #3949ab; padding-bottom: 15px; margin-top: 0; }
+
+  /* 每条新闻：flex 布局 */
+  .news-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 18px 0;
+    border-bottom: 1px dashed #e0e0e0;
+    transition: background .2s;
+  }
+  .news-item:hover { background: #f5f8ff; }
+
+  /* 左侧日期块 */
+  .date-block {
+    flex: 0 0 90px;
+    background: #3949ab;
+    color: #fff;
+    border-radius: 8px;
+    text-align: center;
+    padding: 8px 0;
+    line-height: 1.2;
+  }
+  .date-block .day { font-size: 26px; font-weight: bold; }
+  .date-block .ym  { font-size: 12px; opacity: .9; }
+
+  /* 右侧内容 */
+  .news-content { flex: 1; }
+  .news-content h3 {
+    margin: 0 0 6px;
+    font-size: 17px;
+    color: #222;
+  }
+  .news-content h3 a { color: inherit; text-decoration: none; }
+  .news-content h3 a:hover { color: #3949ab; }
+  .news-content p { margin: 0; color: #666; font-size: 14px; line-height: 1.6; }
+
+  /* 分页 */
+  .pagination {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 30px;
+  }
+  .pagination a {
+    display: inline-block;
+    padding: 6px 14px;
+    border: 1px solid #c5cae9;
+    border-radius: 6px;
+    text-decoration: none;
+    color: #3949ab;
+  }
+  .pagination a.active,
+  .pagination a:hover {
+    background: #3949ab;
+    color: #fff;
+    border-color: #3949ab;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>📢 中心动态</h1>
+
+  <div class="news-item">
+    <div class="date-block"><div class="day">18</div><div class="ym">2026.09</div></div>
+    <div class="news-content">
+      <h3><a href="#">关于国庆节期间课程安排的通知</a></h3>
+      <p>各位学员：国庆假期 10 月 1 日至 7 日放假，10 月 8 日正常上课，请提前做好学习安排。</p>
+    </div>
+  </div>
+
+  <div class="news-item">
+    <div class="date-block"><div class="day">12</div><div class="ym">2026.09</div></div>
+    <div class="news-content">
+      <h3><a href="#">2026 秋季班开学典礼隆重举行</a></h3>
+      <p>本次秋季班共有 200 余名学员入学，中心领导、讲师代表出席并致辞。</p>
+    </div>
+  </div>
+
+  <div class="news-item">
+    <div class="date-block"><div class="day">05</div><div class="ym">2026.09</div></div>
+    <div class="news-content">
+      <h3><a href="#">就业喜报：8 月就业率达 96.8%</a></h3>
+      <p>Java 班、前端班学员陆续入职知名互联网企业，平均起薪 8500 元。</p>
+    </div>
+  </div>
+
+  <div class="news-item">
+    <div class="date-block"><div class="day">28</div><div class="ym">2026.08</div></div>
+    <div class="news-content">
+      <h3><a href="#">免费公开课：Vue3 企业级项目实战</a></h3>
+      <p>本周六下午 2 点，中心报告厅，限额 60 人，先到先得。</p>
+    </div>
+  </div>
+
+  <div class="news-item">
+    <div class="date-block"><div class="day">20</div><div class="ym">2026.08</div></div>
+    <div class="news-content">
+      <h3><a href="#">新增人工智能训练师认证课程</a></h3>
+      <p>面向零基础学员，学习 Python、数据处理与机器学习基础，可考取工信部证书。</p>
+    </div>
+  </div>
+
+  <div class="pagination">
+    <a href="#">上一页</a>
+    <a href="#" class="active">1</a>
+    <a href="#">2</a>
+    <a href="#">3</a>
+    <a href="#">下一页</a>
+  </div>
+</div>
+</body>
+</html>

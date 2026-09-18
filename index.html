@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="23307221029 张妍的前端课程作业导航">
+  <title>张妍的前端作业导航</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+      color: #fff;
+      background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 45%, #7c3aed 100%);
+      background-attachment: fixed;
+    }
+
+    .page {
+      width: min(1180px, 92%);
+      margin: 0 auto;
+      padding: 64px 0;
+    }
+
+    .hero {
+      text-align: center;
+      margin-bottom: 42px;
+    }
+
+    .student {
+      display: inline-flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px 22px;
+      padding: 10px 20px;
+      margin-bottom: 22px;
+      border: 1px solid rgba(255, 255, 255, .28);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .12);
+      backdrop-filter: blur(10px);
+      font-size: 15px;
+      letter-spacing: .5px;
+    }
+
+    .student strong {
+      color: #fde68a;
+    }
+
+    h1 {
+      margin: 0 0 14px;
+      font-size: clamp(32px, 6vw, 54px);
+      letter-spacing: 2px;
+      text-shadow: 0 8px 28px rgba(0, 0, 0, .28);
+    }
+
+    .hero p {
+      max-width: 680px;
+      margin: 0 auto;
+      color: rgba(255, 255, 255, .78);
+      font-size: 16px;
+      line-height: 1.8;
+    }
+
+    .cards {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 24px;
+    }
+
+    .card {
+      position: relative;
+      flex: 1 1 300px;
+      max-width: 360px;
+      min-height: 290px;
+      padding: 32px 28px;
+      overflow: hidden;
+      color: #fff;
+      text-decoration: none;
+      border: 1px solid rgba(255, 255, 255, .24);
+      border-radius: 24px;
+      background: linear-gradient(145deg, rgba(255, 255, 255, .18), rgba(255, 255, 255, .07));
+      box-shadow: 0 20px 50px rgba(0, 0, 0, .22);
+      backdrop-filter: blur(14px);
+      transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+    }
+
+    .card::after {
+      content: "";
+      position: absolute;
+      width: 170px;
+      height: 170px;
+      right: -65px;
+      bottom: -70px;
+      border-radius: 50%;
+      background: var(--glow);
+      filter: blur(2px);
+      opacity: .72;
+      transition: transform .3s ease;
+    }
+
+    .card:nth-child(1) {
+      --glow: rgba(56, 189, 248, .65);
+    }
+
+    .card:nth-child(2) {
+      --glow: rgba(52, 211, 153, .65);
+    }
+
+    .card:nth-child(3) {
+      --glow: rgba(251, 146, 60, .7);
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      border-color: rgba(255, 255, 255, .55);
+      box-shadow: 0 28px 64px rgba(0, 0, 0, .34);
+    }
+
+    .card:hover::after {
+      transform: scale(1.18);
+    }
+
+    .icon {
+      display: grid;
+      place-items: center;
+      width: 66px;
+      height: 66px;
+      margin-bottom: 26px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, .17);
+      font-size: 34px;
+    }
+
+    .card h2 {
+      position: relative;
+      z-index: 1;
+      margin: 0 0 14px;
+      font-size: 23px;
+    }
+
+    .card p {
+      position: relative;
+      z-index: 1;
+      min-height: 52px;
+      margin: 0 0 26px;
+      color: rgba(255, 255, 255, .78);
+      line-height: 1.7;
+    }
+
+    .enter {
+      position: relative;
+      z-index: 1;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 700;
+    }
+
+    .enter span {
+      transition: transform .25s ease;
+    }
+
+    .card:hover .enter span {
+      transform: translateX(6px);
+    }
+
+    footer {
+      margin-top: 46px;
+      color: rgba(255, 255, 255, .58);
+      text-align: center;
+      font-size: 13px;
+    }
+
+    @media (max-width: 680px) {
+      .page {
+        padding: 40px 0;
+      }
+
+      .card {
+        min-height: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="hero">
+      <div class="student">
+        <span>学号：<strong>23307221029</strong></span>
+        <span>姓名：<strong>张妍</strong></span>
+      </div>
+      <h1>前端课程作业集</h1>
+      <p>三次前端作业在线展示入口，包含 HTML、CSS 与 JavaScript 综合练习。</p>
+    </header>
+
+    <section class="cards" aria-label="作业导航">
+      <a class="card" href="homework1/">
+        <div class="icon">📝</div>
+        <h2>作业一</h2>
+        <p>12306 注册表单设计，以及 10 种常用选择器示例。</p>
+        <div class="enter">进入作业一 <span>→</span></div>
+      </a>
+
+      <a class="card" href="homework2/">
+        <div class="icon">🧩</div>
+        <h2>作业二</h2>
+        <p>Flex 布局、课程介绍、新闻动态、免费体验、团队风采与 CSS3 函数。</p>
+        <div class="enter">进入作业二 <span>→</span></div>
+      </a>
+
+      <a class="card" href="homework3/">
+        <div class="icon">🛒</div>
+        <h2>作业三</h2>
+        <p>京东轮播、彩妆列表、青鸟注册、京东注册与家电、JS 四则运算。</p>
+        <div class="enter">进入作业三 <span>→</span></div>
+      </a>
+    </section>
+
+    <footer>23307221029 张妍 · GitHub Pages 前端作业展示</footer>
+  </main>
+</body>
+</html>

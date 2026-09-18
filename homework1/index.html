@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>12306 注册表单 · 选择器示例</title>
+    <style>
+        /* 只保留必要的布局，避免影响“表单元素”的专注，但为了可读性加一点间距 */
+        body {
+            font-family: system-ui, 'Segoe UI', Roboto, sans-serif;
+            margin: 2rem;
+            background: #fafafa;
+            color: #222;
+        }
+        .form-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            padding: 2rem 2rem 2.5rem;
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.05);
+        }
+        h2 {
+            font-size: 1.8rem;
+            font-weight: 500;
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            border-left: 6px solid #3b7cbf;
+            padding-left: 1rem;
+            color: #1e3b5c;
+        }
+        h3 {
+            font-size: 1.3rem;
+            font-weight: 500;
+            margin: 2rem 0 1rem 0;
+            color: #2c3e50;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 0.5rem;
+        }
+        /* 表单行样式，只是为了看起来像表单，不影响元素本身 */
+        .field-row {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1.2rem;
+            flex-wrap: wrap;
+        }
+        .field-label {
+            width: 170px;
+            flex-shrink: 0;
+            font-weight: 500;
+            padding-top: 0.5rem;
+            color: #2d3e50;
+        }
+        .field-label .required {
+            color: #c0392b;
+            margin-right: 4px;
+            font-weight: 700;
+        }
+        .field-control {
+            flex: 1;
+            min-width: 280px;
+        }
+        input, select, textarea {
+            font-size: 1rem;
+            padding: 0.6rem 0.9rem;
+            border: 1px solid #b0bec5;
+            border-radius: 6px;
+            background: white;
+            transition: 0.15s;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        input:focus, select:focus {
+            border-color: #3b7cbf;
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(59,124,191,0.2);
+        }
+        .hint {
+            font-size: 0.8rem;
+            color: #5f6c7a;
+            margin-top: 0.3rem;
+            margin-left: 0.2rem;
+        }
+        .inline-group {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+        }
+        .inline-group label {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            font-weight: normal;
+            margin-right: 0.8rem;
+            white-space: nowrap;
+        }
+        .inline-group input[type="radio"] {
+            width: auto;
+            margin-right: 0.2rem;
+        }
+        .inline-group input[type="checkbox"] {
+            width: auto;
+        }
+        /* 选择器示例区域 */
+        .selector-demo {
+            background: #eef3f8;
+            border-left: 5px solid #3b7cbf;
+            padding: 1.5rem 1.8rem;
+            border-radius: 10px;
+            margin: 2rem 0 1rem;
+        }
+        .selector-demo h3 {
+            margin-top: 0;
+            border-bottom: none;
+            color: #1e3b5c;
+        }
+        .demo-item {
+            background: white;
+            padding: 0.8rem 1.2rem;
+            margin-bottom: 0.9rem;
+            border-radius: 8px;
+            border: 1px solid #cfddee;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+        }
+        .demo-item span.label {
+            font-weight: 600;
+            color: #3b7cbf;
+            display: inline-block;
+            min-width: 180px;
+            font-family: system-ui, sans-serif;
+        }
+        .demo-item code {
+            background: #f0f4fa;
+            padding: 0.15rem 0.5rem;
+            border-radius: 6px;
+            color: #1a2a3a;
+        }
+        hr {
+            margin: 2rem 0 0.5rem;
+            border: none;
+            border-top: 2px dashed #cbd5e1;
+        }
+        .footnote {
+            color: #4a5c6e;
+            font-size: 0.9rem;
+            background: #f1f6fb;
+            padding: 0.8rem 1.2rem;
+            border-radius: 10px;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+<div class="form-container">
+    <h2>🚄 12306 注册（仅表单元素 + 验证）</h2>
+
+    <!-- ========= 表单开始 ========= -->
+    <form id="registerForm" onsubmit="return false;">
+        <!-- 账户信息 -->
+        <h3>📋 账户信息</h3>
+
+        <!-- 用户名 -->
+        <div class="field-row">
+            <div class="field-label"><span class="required">*</span>用 户 名：</div>
+            <div class="field-control">
+                <input type="text" name="username" id="username" placeholder="6-30位字母、数字或“_”，字母开头"
+                       pattern="[A-Za-z][A-Za-z0-9_]{5,29}" required>
+                <div class="hint">6-30位字母、数字或“_”，字母开头</div>
+            </div>
+        </div>
+
+        <!-- 登录密码 -->
+        <div class="field-row">
+            <div class="field-label"><span class="required">*</span>登录密码：</div>
+            <div class="field-control">
+                <input type="password" name="password" id="password" placeholder="至少8位，包含字母、数字"
+                       minlength="8" required>
+                <div class="hint">至少8位，建议字母+数字组合</div>
+            </div>
+        </div>
+
+        <!-- 确认密码 -->
+        <div class="field-row">
+            <div class="field-label"><span class="required">*</span>确认密码：</div>
+            <div class="field-control">
+                <input type="password" name="confirmPassword" id="confirmPassword" placeholder="再次输入登录密码"
+                       minlength="8" required>
+            </div>
+        </div>
+
+        <!-- 证件类型 (select) 并保留切换提示，但不实现元素切换 -->
+        <div class="field-row">
+            <div class="field-label"><span class="required">*</span>证件类型：</div>
+            <div class="field-control">
+                <select name="idType" id="idType" required>
+                    <option value="" disabled selected>请选择证件类型</option>
+                    <option value="居民身份证">居民身份证</option>
+                    <option value="港澳居民居住证">港澳居民居住证</option>
+                    <option value="台湾居民居住证">台湾居民居住证</option>
+                    <option value="中国护照">中国护照</option>
+                    <option value="外国人永久居留身份证">外国人永久居留身份证</option>
+                    <option value="港澳居民来往内地通行证">港澳居民来往内地通行证</option>
+                    <option value="台湾居民来往大陆通行证">台湾居民来往大陆通行证</option>
+                    <option value="外国护照">外国护照</option>
+                </select>
+                <div class="hint">选择证件类型后，姓名、证件号码规则会不同（演示中未实现切换）</div>
+            </div>
+        </div>
+
+        <!-- 姓名（带填写规则说明） -->
+        <div class="field-row">
+            <div class="field-label"><span class="required">*</span>姓 名：</div>
+            <div class="field-control">
+                <input type="text" name="fullName" id="fullName" placeholder="按证件姓名顺序填写" required>
+                <div class="hint">姓名填写规则（用于身份核验，请正确填写）</div>
+            </div>
+        </div>
+
+        <!-- 证件号码 -->
+        <div class="field-row">
+            <div class="field-label"><span class="required">*</span>证件号码：</div>
+            <div class="field-control">
+                <input type="text" name="idNumber" id="idNumber" placeholder="请输入证件号码" required>
+                <div class="hint">（用于身份核验，请正确填写）</div>
+            </div>
+        </div>
+
+        <!-- 证件有效期截止日期 -->
+        <div class="field-row">
+            <div class="field-label"><span class="required">*</span>证件有效期截止日期：</div>
+            <div class="field-control">
+                <input type="date" name="idExpiryDate" id="idExpiryDate" required>
+            </div>
+        </div>
+
+        <!-- 出生日期 -->
+        <div class="field-row">
+            <div class="field-label"><span class="required">*</span>出生日期：</div>
+            <div class="field-control">
+                <input type="date" name="birthDate" id="birthDate" required>
+            </div>
+        </div>
+
+        <!-- 性别 (radio 组) -->
+        <div class="field-row">
+            <div class="field-label"><span class="required">*</span>性 别：</div>
+            <div class="field-control">
+                <div class="inline-group">
+                    <label><input type="radio" name="gender" value="male" required> 男</label>
+                    <label><input type="radio" name="gender" value="female"> 女</label>
+                    <!-- 12306 可能还有“其他”，但保留基本 -->
+                </div>
+            </div>
+        </div>
+
+        <!-- 国家/地区 (select) -->
+        <div class="field-row">
+            <div class="field-label"><span class="required">*</span>国家/地区：</div>
+            <div class="field-control">
+                <select name="country" id="country" required>
+                    <option value="" disabled selected>请选择国家/地区</option>
+                    <option value="中国">中国</option>
+                    <option value="中国香港">中国香港</option>
+                    <option value="中国澳门">中国澳门</option>
+                    <option value="中国台湾">中国台湾</option>
+                    <option value="美国">美国</option>
+                    <option value="英国">英国</option>
+                    <option value="日本">日本</option>
+                    <option value="其他">其他</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- 优惠（待）类型 (select) -->
+        <div class="field-row">
+            <div class="field-label"><span class="required">*</span>优惠（待）类型：</div>
+            <div class="field-control">
+                <select name="preferenceType" id="preferenceType" required>
+                    <option value="" disabled selected>请选择优惠类型</option>
+                    <option value="无">无</option>
+                    <option value="学生">学生</option>
+                    <option value="儿童">儿童</option>
+                    <option value="残疾军人">残疾军人</option>
+                </select>
+                <div class="hint">未办理学生优惠资质核验的用户，购买学生票前须使用本人12306账号在铁路12306APP学生优惠专区中完成学生优惠资质采集，或持有效证件在车站窗口办理学生优惠资质采集后乘车。</div>
+            </div>
+        </div>
+
+        <!-- 邮箱 (非必填) -->
+        <div class="field-row">
+            <div class="field-label">邮 箱：</div>
+            <div class="field-control">
+                <input type="email" name="email" id="email" placeholder="example@domain.com">
+            </div>
+        </div>
+
+        <!-- 手机号码 -->
+        <div class="field-row">
+            <div class="field-label"><span class="required">*</span>手机号码：</div>
+            <div class="field-control">
+                <input type="tel" name="mobile" id="mobile" placeholder="11位手机号" pattern="1[3-9]\d{9}" required>
+                <div class="hint">请正确填写手机号码，稍后将向该手机号码发送短信验证码</div>
+            </div>
+        </div>
+
+        <!-- 只是为了完整性加一个提交按钮（不做提交），但作业核心是表单元素，所以可以保留 -->
+        <div style="margin-top: 2rem; display: flex; gap: 1rem;">
+            <button type="submit" style="background: #3b7cbf; color: white; border: none; padding: 0.75rem 2rem; border-radius: 40px; font-size: 1rem; cursor: pointer;">注册（演示）</button>
+            <button type="reset" style="background: #e0e7ef; border: none; padding: 0.75rem 2rem; border-radius: 40px; font-size: 1rem; cursor: pointer;">重置</button>
+        </div>
+    </form>
+
+    <!-- ========= 常用的选择器 示例 ========= -->
+    <hr>
+    <div class="selector-demo">
+        <h3>🔍 常用选择器示例（每种一个例子）</h3>
+        <p style="margin-top: 0; color: #2c3e50;">以下选择器均在页面中有效，配合实际元素说明。</p>
+
+        <div class="demo-item">
+            <span class="label">1. 元素选择器 (element)</span>
+            <code>input { ... }</code> — 选中所有 input 元素，如上方输入框
+        </div>
+        <div class="demo-item">
+            <span class="label">2. 类选择器 (class)</span>
+            <code>.field-label { ... }</code> — 选中所有 class="field-label" 的标签区域
+        </div>
+        <div class="demo-item">
+            <span class="label">3. ID 选择器 (id)</span>
+            <code>#username { ... }</code> — 精确选中 id="username" 的用户名输入框
+        </div>
+        <div class="demo-item">
+            <span class="label">4. 属性选择器 (attribute)</span>
+            <code>input[type="date"] { ... }</code> — 选中所有日期输入框（证件有效期、出生日期）
+        </div>
+        <div class="demo-item">
+            <span class="label">5. 伪类选择器 (pseudo-class)</span>
+            <code>input:focus { ... }</code> — 输入框获得焦点时样式（如蓝色外圈）
+        </div>
+        <div class="demo-item">
+            <span class="label">6. 伪元素选择器 (pseudo-element)</span>
+            <code>.hint::before { content: "ⓘ "; }</code> — 可在提示文字前加图标，本页未加但语法有效
+        </div>
+        <div class="demo-item">
+            <span class="label">7. 后代选择器 (descendant)</span>
+            <code>.field-control input { ... }</code> — 选中 .field-control 内部的所有 input
+        </div>
+        <div class="demo-item">
+            <span class="label">8. 子代选择器 (child)</span>
+            <code>.inline-group > label { ... }</code> — 选中 .inline-group 的直接子元素 label
+        </div>
+        <div class="demo-item">
+            <span class="label">9. 相邻兄弟选择器 (adjacent sibling)</span>
+            <code>input + .hint { ... }</code> — 选中紧跟在 input 后面的 .hint 元素
+        </div>
+        <div class="demo-item">
+            <span class="label">10. 通用兄弟选择器 (general sibling)</span>
+            <code>input ~ .hint { ... }</code> — 选中同一父级下 input 之后的所有 .hint
+        </div>
+    </div>
+
+    <!-- 验证说明 -->
+    <div class="footnote">
+        <strong>✅ 已实现的验证（基于 HTML5）：</strong> 用户名格式（字母开头，6-30位字母数字下划线）、密码长度至少8位、确认密码与密码一致（通过 JavaScript 在提交时验证，为演示完整性添加了轻量脚本）、证件类型必选、姓名必填、证件号码必填、证件有效期必填、出生日期必填、性别必选、国家/地区必选、优惠类型必选、邮箱格式（若填写）、手机号11位且符合中国手机号格式。
+    </div>
+</div>
+
+<!-- 轻量验证脚本：确认密码一致性、用户名正则强化（pattern已经做了，但部分浏览器不阻止提交，因此用JS补充） -->
+<script>
+    (function() {
+        const form = document.getElementById('registerForm');
+        const password = document.getElementById('password');
+        const confirm = document.getElementById('confirmPassword');
+        const username = document.getElementById('username');
+        const mobile = document.getElementById('mobile');
+
+        // 提交时验证，但表单onsubmit已经return false，所以用事件监听来演示
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();  // 阻止实际提交
+
+            // 1. 确认密码一致性
+            if (password.value !== confirm.value) {
+                alert('❌ 两次输入的密码不一致，请重新输入。');
+                confirm.focus();
+                return;
+            }
+
+            // 2. 用户名额外验证 (pattern已经覆盖，但某些浏览器可能忽略pattern)
+            const userPattern = /^[A-Za-z][A-Za-z0-9_]{5,29}$/;
+            if (!userPattern.test(username.value)) {
+                alert('❌ 用户名必须为6-30位字母、数字或下划线，且以字母开头。');
+                username.focus();
+                return;
+            }
+
+            // 3. 手机号格式额外确认 (pattern已做)
+            const mobilePattern = /^1[3-9]\d{9}$/;
+            if (!mobilePattern.test(mobile.value)) {
+                alert('❌ 请输入有效的11位手机号码。');
+                mobile.focus();
+                return;
+            }
+
+            // 4. 密码长度(浏览器minlength也会处理，这里更严谨)
+            if (password.value.length < 8) {
+                alert('❌ 密码长度至少为8位。');
+                password.focus();
+                return;
+            }
+
+            // 如果全部通过，显示成功（演示）
+            alert('✅ 表单验证通过（演示环境，未真正提交）');
+        });
+
+        // 可选：为每个输入框添加实时提醒样式（不过度）
+    })();
+</script>
+
+<!-- 补充：为了体现伪元素选择器的示例，可以加一条隐藏规则，但已经注释说明 -->
+<style>
+    /* 伪元素示例：本页并未实际使用，但为了展示选择器能力，加一个轻量装饰 */
+    .hint::before {
+        content: "ⓘ ";
+        color: #3b7cbf;
+        font-weight: 600;
+    }
+    /* 同时展示后代选择器、子代选择器、相邻兄弟等，但只做演示，避免影响视觉效果 */
+    .field-control input:focus {
+        border-color: #2a6eb0;
+    }
+    /* 属性选择器生效：日期输入框背景微调 */
+    input[type="date"] {
+        background-color: #fcfdff;
+    }
+    /* 通用兄弟选择器效果微调——这里不应用以免混乱，仅作示例 */
+    /* input ~ .hint { color: #2a5f8a; } 不启用，因为会改变颜色 */
+</style>
+
+</body>
+</html>

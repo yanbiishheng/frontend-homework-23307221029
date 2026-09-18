@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>彩妆热卖产品列表</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: "Microsoft YaHei", sans-serif;
+    background: #fdf6f9;
+    padding: 30px 20px;
+  }
+
+  .header {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  .header h1 {
+    color: #d81b60;
+    font-size: 28px;
+    margin-bottom: 8px;
+  }
+  .header p {
+    color: #999;
+    margin: 0;
+  }
+
+  /* ========== 商品列表：flex 网格 ========== */
+  .products {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+  }
+
+  /* ========== 单个商品卡片 ========== */
+  .product {
+    flex: 0 1 220px;
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(216,27,96,.08);
+    transition: transform .28s, box-shadow .28s;
+    cursor: pointer;
+    position: relative;
+  }
+  .product:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 28px rgba(216,27,96,.22);
+  }
+
+  /* 商品图片区：用渐变模拟商品图 */
+  .product-img {
+    height: 180px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 48px;
+    color: #fff;
+  }
+  /* 不同色系区分商品 */
+  .p1 .product-img { background: linear-gradient(135deg,#ff8a80,#ff5252); }
+  /* 图片存在时可启用：background: url("images/cos-1.jpg") no-repeat center/cover; */
+  .p2 .product-img { background: linear-gradient(135deg,#f48fb1,#ec407a); }
+  /* 图片存在时可启用：background: url("images/cos-2.jpg") no-repeat center/cover; */
+  .p3 .product-img { background: linear-gradient(135deg,#ce93d8,#ab47bc); }
+  /* 图片存在时可启用：background: url("images/cos-3.jpg") no-repeat center/cover; */
+  .p4 .product-img { background: linear-gradient(135deg,#80deea,#26c6da); }
+  /* 图片存在时可启用：background: url("images/cos-4.jpg") no-repeat center/cover; */
+  .p5 .product-img { background: linear-gradient(135deg,#ffd54f,#ffb300); }
+  .p6 .product-img { background: linear-gradient(135deg,#a5d6a7,#66bb6a); }
+  .p7 .product-img { background: linear-gradient(135deg,#90caf9,#42a5f5); }
+  .p8 .product-img { background: linear-gradient(135deg,#bcaaa4,#8d6e63); }
+
+  /* 热卖角标 */
+  .badge {
+    position: absolute;
+    top: 10px; left: 10px;
+    background: #d81b60;
+    color: #fff;
+    font-size: 12px;
+    padding: 3px 8px;
+    border-radius: 10px;
+  }
+
+  /* 商品信息 */
+  .product-info { padding: 14px 14px 18px; }
+  .product-info .name {
+    font-size: 14px;
+    color: #333;
+    line-height: 1.5;
+    height: 42px;
+    overflow: hidden;
+    margin-bottom: 8px;
+  }
+  .product-info .desc {
+    font-size: 12px;
+    color: #999;
+    margin-bottom: 10px;
+  }
+  .product-info .price-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+  .price { color: #d81b60; font-size: 20px; font-weight: bold; }
+  .price .yen { font-size: 13px; }
+  .old-price {
+    color: #bbb;
+    text-decoration: line-through;
+    font-size: 13px;
+    margin-left: 6px;
+  }
+  .btn-buy {
+    background: linear-gradient(135deg,#ff6b9d,#d81b60);
+    color: #fff;
+    border: none;
+    padding: 6px 14px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: .2s;
+  }
+  .btn-buy:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(216,27,96,.35);
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>💄 彩妆热卖榜</h1>
+  <p>精选人气单品 · 全场包邮 · 7 天无理由退换</p>
+</div>
+
+<div class="products">
+
+  <div class="product p1">
+    <span class="badge">热卖</span>
+    <div class="product-img">💄</div>
+    <div class="product-info">
+      <div class="name">丝绒哑光唇釉 持久不脱色</div>
+      <div class="desc">正红色 · 3.5g</div>
+      <div class="price-row">
+        <span class="price"><span class="yen">¥</span>129<span class="old-price">¥199</span></span>
+        <button class="btn-buy">购买</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="product p2">
+    <span class="badge">爆款</span>
+    <div class="product-img">💅</div>
+    <div class="product-info">
+      <div class="name">水润光感粉底液 24h 持妆</div>
+      <div class="desc">自然色 · 30ml</div>
+      <div class="price-row">
+        <span class="price"><span class="yen">¥</span>259<span class="old-price">¥369</span></span>
+        <button class="btn-buy">购买</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="product p3">
+    <div class="product-img">🎨</div>
+    <div class="product-info">
+      <div class="name">12 色眼影盘 大地色系</div>
+      <div class="desc">哑光 + 珠光</div>
+      <div class="price-row">
+        <span class="price"><span class="yen">¥</span>169<span class="old-price">¥239</span></span>
+        <button class="btn-buy">购买</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="product p4">
+    <span class="badge">新品</span>
+    <div class="product-img">✨</div>
+    <div class="product-info">
+      <div class="name">高光修容盘 立体小脸</div>
+      <div class="desc">香槟金 · 8g</div>
+      <div class="price-row">
+        <span class="price"><span class="yen">¥</span>99<span class="old-price">¥159</span></span>
+        <button class="btn-buy">购买</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="product p5">
+    <div class="product-img">🌼</div>
+    <div class="product-info">
+      <div class="name">蜜粉定妆散粉 控油保湿</div>
+      <div class="desc">透明色 · 10g</div>
+      <div class="price-row">
+        <span class="price"><span class="yen">¥</span>89<span class="old-price">¥129</span></span>
+        <button class="btn-buy">购买</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="product p6">
+    <span class="badge">买一送一</span>
+    <div class="product-img">🌿</div>
+    <div class="product-info">
+      <div class="name">温和卸妆水 敏感肌可用</div>
+      <div class="desc">500ml 大容量</div>
+      <div class="price-row">
+        <span class="price"><span class="yen">¥</span>79<span class="old-price">¥119</span></span>
+        <button class="btn-buy">购买</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="product p7">
+    <div class="product-img">🖌️</div>
+    <div class="product-info">
+      <div class="name">专业化妆刷 10 支套装</div>
+      <div class="desc">软毛 · 便携收纳包</div>
+      <div class="price-row">
+        <span class="price"><span class="yen">¥</span>139<span class="old-price">¥199</span></span>
+        <button class="btn-buy">购买</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="product p8">
+    <div class="product-img">💋</div>
+    <div class="product-info">
+      <div class="name">唇釉 + 口红 双支礼盒</div>
+      <div class="desc">节日送礼首选</div>
+      <div class="price-row">
+        <span class="price"><span class="yen">¥</span>199<span class="old-price">¥299</span></span>
+        <button class="btn-buy">购买</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

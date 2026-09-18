@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CSS3 函数设置属性示例</title>
+<style>
+  body {
+    font-family: "Microsoft YaHei", sans-serif;
+    background: #f0f4f8;
+    padding: 30px;
+    line-height: 1.7;
+  }
+  h1 { color: #1a237e; }
+  .demo {
+    background: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 14px rgba(0,0,0,.06);
+  }
+  .demo h3 { margin-top: 0; color: #3949ab; }
+  .demo code { background: #eef2ff; padding: 2px 6px; border-radius: 4px; color: #c2185b; }
+
+  /* ============= 1. calc()：计算高度 ============= */
+  .box-calc {
+    /* 高度 = 100vh - 顶部与底部留白 160px */
+    height: calc(100vh - 160px);
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    font-size: 20px;
+    min-height: 200px;      /* 防止窗口太小时被压扁 */
+  }
+
+  /* ============= 2. min() / max()：取小 / 取大值 ============= */
+  .box-minmax {
+    width: min(100%, 600px);        /* 最多 600px，否则铺满父级 */
+    min-height: max(150px, 20vh);   /* 最小 150px 或 20vh 中较大的 */
+    margin: 0 auto;
+    background: #4facfe;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+  }
+
+  /* ============= 3. clamp()：限制取值范围 ============= */
+  .title-clamp {
+    /* 字号最小 18px，理想值 4vw，最大 42px */
+    font-size: clamp(18px, 4vw, 42px);
+    color: #c2185b;
+    text-align: center;
+    margin: 30px 0;
+    font-weight: bold;
+  }
+
+  /* ============= 4. 宽高用函数组合：响应式卡片 ============= */
+  .card-func {
+    width: clamp(240px, 30%, 360px);
+    padding: calc(1rem + 1vw);
+    background: #fff;
+    border-left: 6px solid #43e97b;
+    border-radius: 8px;
+    box-shadow: 0 4px 14px rgba(0,0,0,.06);
+  }
+
+  /* ============= 5. 颜色函数 rgb / hsl 也可算函数 ============= */
+  .color-func {
+    height: 80px;
+    border-radius: 8px;
+    /* hsl 中亮度用 calc 计算 */
+    background: hsl(220, 80%, calc(50% + 10%));
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+</style>
+</head>
+<body>
+
+<h1>🎨 CSS3 函数设置属性示例</h1>
+
+<div class="demo">
+  <h3>1. <code>calc()</code> — 动态计算高度</h3>
+  <p>高度设为 <code>calc(100vh - 160px)</code>，随窗口高度变化。</p>
+  <div class="box-calc">我是用 calc 计算的高度框</div>
+</div>
+
+<div class="demo">
+  <h3>2. <code>min()</code> / <code>max()</code> — 限制宽高范围</h3>
+  <p>宽度 <code>min(100%, 600px)</code>；最小高度 <code>max(150px, 20vh)</code>。</p>
+  <div class="box-minmax">自适应 & 有下限的盒子</div>
+</div>
+
+<div class="demo">
+  <h3>3. <code>clamp()</code> — 同时限制最小与最大</h3>
+  <p>字号 <code>clamp(18px, 4vw, 42px)</code>，窗口缩放时字号平滑变化。</p>
+  <div class="title-clamp">拖动窗口大小，看我变大变小 ✨</div>
+</div>
+
+<div class="demo">
+  <h3>4. 组合使用 — 响应式卡片</h3>
+  <p>宽度 <code>clamp(240px, 30%, 360px)</code>；内边距 <code>calc(1rem + 1vw)</code>。</p>
+  <div class="card-func">
+    <strong>响应式卡片</strong><br>
+    我使用 CSS3 函数动态设置宽高和内边距。
+  </div>
+</div>
+
+<div class="demo">
+  <h3>5. 颜色也支持函数：<code>hsl()</code> + <code>calc()</code></h3>
+  <div class="color-func">亮度 = calc(50% + 10%)</div>
+</div>
+
+</body>
+</html>

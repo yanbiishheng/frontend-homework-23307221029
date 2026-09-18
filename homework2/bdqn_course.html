@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>北大青鸟课程介绍</title>
+<style>
+  * { box-sizing: border-box; }
+  body { font-family: "Microsoft YaHei", sans-serif; margin: 0; background: #f0f4f8; }
+
+  /* 顶部横幅 */
+  .banner {
+    background: linear-gradient(120deg, #0d47a1, #1976d2);
+    color: #fff;
+    padding: 50px 20px;
+    text-align: center;
+  }
+  .banner h1 { margin: 0 0 10px; font-size: 36px; }
+  .banner p { margin: 0; opacity: .9; }
+
+  /* 课程卡片区：flex 三列 */
+  .course-wrap {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+  }
+  .course-card {
+    flex: 1 1 300px;
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(0,0,0,.08);
+    transition: transform .25s, box-shadow .25s;
+  }
+  .course-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 28px rgba(0,0,0,.15);
+  }
+  .course-card .head {
+    background: #1976d2;
+    color: #fff;
+    padding: 20px;
+    font-size: 20px;
+    font-weight: bold;
+  }
+  .course-card .head.green  { background: #2e7d32; }
+  .course-card .head.orange { background: #ef6c00; }
+  .course-card .body { padding: 20px; line-height: 1.8; color: #444; }
+  .course-card .body ul { padding-left: 20px; }
+  .course-card .footer {
+    padding: 15px 20px;
+    border-top: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .course-card .price { color: #e53935; font-size: 22px; font-weight: bold; }
+  .course-card .btn {
+    background: #1976d2; color: #fff; border: none;
+    padding: 8px 18px; border-radius: 20px; cursor: pointer;
+  }
+  .course-card .btn:hover { background: #0d47a1; }
+
+  /* 底部说明 */
+  .tips {
+    max-width: 1200px; margin: 0 auto 40px; padding: 20px;
+    background: #fff8e1; border-left: 5px solid #ffb300;
+    border-radius: 6px; color: #6d4c00; line-height: 1.8;
+  }
+</style>
+</head>
+<body>
+
+<div class="banner">
+  <h1>北大青鸟 · 职业教育</h1>
+  <p>以就业为导向，培养实用型 IT 人才</p>
+</div>
+
+<div class="course-wrap">
+
+  <div class="course-card">
+    <div class="head">Java 全栈开发</div>
+    <div class="body">
+      <ul>
+        <li>Java 基础 + 面向对象</li>
+        <li>Spring Boot + MyBatis</li>
+        <li>MySQL / Redis 数据库</li>
+        <li>前后端综合项目实战</li>
+      </ul>
+    </div>
+    <div class="footer">
+      <span class="price">￥19800</span>
+      <button class="btn">立即咨询</button>
+    </div>
+  </div>
+
+  <div class="course-card">
+    <div class="head green">Web 前端开发</div>
+    <div class="body">
+      <ul>
+        <li>HTML5 + CSS3 布局</li>
+        <li>JavaScript + ES6+</li>
+        <li>Vue / React 框架</li>
+        <li>移动端 + 响应式设计</li>
+      </ul>
+    </div>
+    <div class="footer">
+      <span class="price">￥16800</span>
+      <button class="btn">立即咨询</button>
+    </div>
+  </div>
+
+  <div class="course-card">
+    <div class="head orange">UI / 视觉设计</div>
+    <div class="body">
+      <ul>
+        <li>Photoshop / Illustrator</li>
+        <li>UI 交互设计规范</li>
+        <li>移动端 App 界面设计</li>
+        <li>作品集包装与面试</li>
+      </ul>
+    </div>
+    <div class="footer">
+      <span class="price">￥15800</span>
+      <button class="btn">立即咨询</button>
+    </div>
+  </div>
+
+</div>
+
+<div class="tips">
+  💡 温馨提示：所有课程均提供 7 天免费试学，报名即签订就业协议，学不会可免费重学。
+</div>
+
+</body>
+</html>

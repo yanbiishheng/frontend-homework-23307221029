@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flex 布局三个例子</title>
+<style>
+  body { font-family: system-ui, sans-serif; padding: 20px; background: #f5f5f5; }
+  h2 { color: #2c3e50; border-left: 5px solid #3498db; padding-left: 10px; }
+  .box { background: #fff; border-radius: 8px; padding: 15px; margin-bottom: 30px; box-shadow: 0 2px 8px rgba(0,0,0,.08); }
+
+  /* ========== 例子1：水平导航栏（主轴对齐 + 弹性伸缩）========== */
+  .nav {
+    display: flex;                 /* 开启 flex */
+    justify-content: space-between;/* 主轴两端对齐 */
+    align-items: center;           /* 交叉轴居中 */
+    background: #2c3e50;
+    padding: 12px 20px;
+    border-radius: 6px;
+  }
+  .nav .logo { color: #fff; font-size: 20px; font-weight: bold; }
+  .nav ul {
+    display: flex;                 /* 子项也 flex */
+    list-style: none;
+    gap: 25px;                     /* 子项间距 */
+    margin: 0; padding: 0;
+  }
+  .nav ul li a { color: #ecf0f1; text-decoration: none; }
+  .nav ul li a:hover { color: #f39c12; }
+
+  /* ========== 例子2：卡片等高布局（交叉轴拉伸 + 换行）========== */
+  .cards {
+    display: flex;
+    flex-wrap: wrap;               /* 允许换行 */
+    gap: 20px;
+    align-items: stretch;          /* 交叉轴拉伸，卡片等高 */
+  }
+  .card {
+    flex: 1 1 200px;               /* 放大1 缩小1 基础200px */
+    background: #eaf6ff;
+    border: 1px solid #b3d9ff;
+    padding: 15px;
+    border-radius: 6px;
+  }
+  .card h3 { margin-top: 0; color: #2980b9; }
+
+  /* ========== 例子3：垂直居中（常用居中方案）========== */
+  .center-box {
+    display: flex;
+    justify-content: center;       /* 水平居中 */
+    align-items: center;           /* 垂直居中 */
+    height: 200px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border-radius: 6px;
+    color: #fff;
+  }
+  .center-box .inner {
+    background: rgba(255,255,255,.2);
+    padding: 20px 40px;
+    border-radius: 8px;
+  }
+</style>
+</head>
+<body>
+
+<h2>例子1：水平导航栏（justify-content + align-items）</h2>
+<div class="box">
+  <nav class="nav">
+    <div class="logo">🚀 MySite</div>
+    <ul>
+      <li><a href="#">首页</a></li>
+      <li><a href="#">课程</a></li>
+      <li><a href="#">讲师</a></li>
+      <li><a href="#">关于</a></li>
+    </ul>
+  </nav>
+</div>
+
+<h2>例子2：卡片等高布局（flex-wrap + align-items:stretch）</h2>
+<div class="box">
+  <div class="cards">
+    <div class="card"><h3>HTML</h3><p>超文本标记语言，网页结构基础。</p></div>
+    <div class="card"><h3>CSS</h3><p>层叠样式表，负责页面表现与美化。</p></div>
+    <div class="card"><h3>JavaScript</h3><p>让网页具备交互与动态能力。</p></div>
+    <div class="card"><h3>Flex</h3><p>现代一维布局方案，简单高效。</p></div>
+  </div>
+</div>
+
+<h2>例子3：垂直 + 水平完全居中</h2>
+<div class="box">
+  <div class="center-box">
+    <div class="inner">我是绝对居中的内容 🎯</div>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>23307221029张妍 - 作业3 第5题：JS四则运算</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Microsoft YaHei", sans-serif;
+    background: #eef2f6;
+    padding: 40px 20px;
+    display: flex;
+    justify-content: center;
+  }
+  .calc {
+    width: 480px;
+    max-width: 100%;
+    border: 1px solid #cfd8dc;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(0,0,0,.1);
+    background: #fff;
+  }
+  .calc-title {
+    background: #1e88e5;
+    color: #fff;
+    font-size: 16px;
+    text-align: center;
+    padding: 12px 0;
+    letter-spacing: 2px;
+  }
+  .calc-screen {
+    background: #263238;
+    color: #fff;
+    text-align: right;
+    padding: 14px 18px;
+    font-size: 22px;
+    min-height: 58px;
+  }
+  .calc-screen .expr { font-size: 13px; color: #90a4ae; min-height: 20px; }
+  .calc-pad { padding: 16px 18px 20px; }
+  .calc-row { display: flex; gap: 10px; margin-bottom: 12px; align-items: center; flex-wrap: wrap; }
+  .calc-row input[type="number"] {
+    flex: 1; min-width: 100px; height: 40px;
+    border: 1px solid #cfd8dc; border-radius: 4px;
+    padding: 0 10px; font-size: 15px; outline: none;
+  }
+  .calc-row input[type="number"]:focus { border-color: #1e88e5; }
+  .calc-row select {
+    height: 40px; border: 1px solid #cfd8dc; border-radius: 4px;
+    font-size: 16px; padding: 0 8px; color: #1e88e5; outline: none;
+  }
+  .calc-ops { display: flex; gap: 10px; }
+  .calc-ops button {
+    flex: 1; height: 40px; border: 1px solid #1e88e5;
+    background: #fff; color: #1e88e5; border-radius: 4px;
+    font-size: 16px; cursor: pointer;
+  }
+  .calc-ops button:hover { background: #e3f2fd; }
+</style>
+</head>
+<body>
+
+<div class="calc">
+  <div class="calc-title">JS 四则运算</div>
+  <div class="calc-screen">
+    <div class="expr" id="calcExpr">请输入两个数</div>
+    <div id="calcResult">0</div>
+  </div>
+  <div class="calc-pad">
+    <div class="calc-row">
+      <input type="number" id="numA" placeholder="第一个数" step="any">
+      <select id="opSel">
+        <option value="+">＋</option>
+        <option value="-">－</option>
+        <option value="*">×</option>
+        <option value="/">÷</option>
+      </select>
+      <input type="number" id="numB" placeholder="第二个数" step="any">
+    </div>
+    <div class="calc-ops">
+      <button type="button" data-op="+" id="btnAdd">＋ 加</button>
+      <button type="button" data-op="-" id="btnSub">－ 减</button>
+      <button type="button" data-op="*" id="btnMul">× 乘</button>
+      <button type="button" data-op="/" id="btnDiv">÷ 除</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+    var numA = document.getElementById('numA');
+    var numB = document.getElementById('numB');
+    var opSel = document.getElementById('opSel');
+    var expr = document.getElementById('calcExpr');
+    var result = document.getElementById('calcResult');
+    var opText = { '+': '＋', '-': '－', '*': '×', '/': '÷' };
+
+    function calc(op) {
+        opSel.value = op;
+        var a = parseFloat(numA.value);
+        var b = parseFloat(numB.value);
+        if (isNaN(a) || isNaN(b)) {
+            expr.textContent = '请输入两个数';
+            result.textContent = '输入有误';
+            result.style.color = '#ef5350';
+            return;
+        }
+        var r;
+        if (op === '+') { r = a + b; }
+        else if (op === '-') { r = a - b; }
+        else if (op === '*') { r = a * b; }
+        else {
+            if (b === 0) {
+                expr.textContent = a + ' ÷ ' + b + ' =';
+                result.textContent = '除数不能为 0';
+                result.style.color = '#ef5350';
+                return;
+            }
+            r = a / b;
+        }
+        expr.textContent = a + ' ' + opText[op] + ' ' + b + ' =';
+        result.textContent = r;
+        result.style.color = '#fff';
+    }
+
+    document.querySelectorAll('.calc-ops button').forEach(function (btn) {
+        btn.onclick = function () { calc(btn.getAttribute('data-op')); };
+    });
+
+    // 支持回车计算
+    [numA, numB].forEach(function (el) {
+        el.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter') { calc(opSel.value); }
+        });
+    });
+})();
+</script>
+
+</body>
+</html>
