@@ -45,15 +45,11 @@ frontend-homework-23307221029/
 4. 不要勾选 `Add a README file`、`.gitignore` 或 `license`。
 5. 点击 `Create repository`。
 
-然后打开终端，把下列命令逐行复制执行，并把 `你的用户名` 替换成真实 GitHub 用户名：
+当前项目已经完成初始化、提交和远程地址配置。在 Ubuntu 终端执行：
 
 ```bash
-cd C:\Users\你的电脑用户名\Documents\frontend-homework-23307221029
-git init
-git add .
-git commit -m "第一次提交：三次前端作业"
-git branch -M main
-git remote add origin https://github.com/你的用户名/frontend-homework-23307221029.git
+cd /mnt/c/Users/che_r/Documents/Codex/2026-09-18/github-pages-pycharm-github-github-pages/outputs/frontend-homework-23307221029
+git remote -v
 git push -u origin main
 ```
 
@@ -64,11 +60,11 @@ git config --global user.name "张妍"
 git config --global user.email "你的GitHub绑定邮箱"
 ```
 
-如果推送时要求登录，可以使用 Git Credential Manager 弹出的浏览器登录，或使用 GitHub Personal Access Token 作为密码。
+如果推送时要求登录：用户名为 `yanbiishheng`，密码需要填写 GitHub Personal Access Token，不要填写 GitHub 登录密码。
 
 ## 三、开启 GitHub Pages
 
-1. 打开 `https://github.com/你的用户名/frontend-homework-23307221029`。
+1. 打开 `https://github.com/yanbiishheng/frontend-homework-23307221029`。
 2. 点击 `Settings`。
 3. 左侧点击 `Pages`。
 4. 在 `Build and deployment` 中，`Source` 选择 `Deploy from a branch`。
@@ -79,7 +75,7 @@ git config --global user.email "你的GitHub绑定邮箱"
 最终访问地址：
 
 ```text
-https://你的用户名.github.io/frontend-homework-23307221029/
+https://yanbiishheng.github.io/frontend-homework-23307221029/
 ```
 
 ## 四、更新作业
@@ -97,8 +93,8 @@ GitHub Pages 通常会在推送后 1 到 3 分钟内自动更新。
 ## 五、上传后验证清单
 
 - [ ] GitHub 仓库是 `Public`
-- [ ] `https://github.com/你的用户名/frontend-homework-23307221029` 能打开
-- [ ] `https://你的用户名.github.io/frontend-homework-23307221029/` 能打开
+- [ ] `https://github.com/yanbiishheng/frontend-homework-23307221029` 能打开
+- [ ] `https://yanbiishheng.github.io/frontend-homework-23307221029/` 能打开
 - [ ] 首页 3 个作业链接都能打开
 - [ ] 作业二 6 个页面链接都能打开
 - [ ] 作业三 5 个页面链接都能打开

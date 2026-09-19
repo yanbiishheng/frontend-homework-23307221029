@@ -5,141 +5,206 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>团队风采</title>
 <style>
-  * { box-sizing: border-box; }
-  body { font-family: "Microsoft YaHei", sans-serif; margin: 0; background: #f4f6fa; padding: 40px 20px; }
-
-  .title {
-    text-align: center;
-    color: #1a237e;
-    margin-bottom: 40px;
-  }
-  .title h1 { font-size: 32px; margin-bottom: 8px; }
-  .title p { color: #888; margin: 0; }
-
-  /* 团队成员网格：flex 自动换行 */
-  .team-wrap {
-    max-width: 1100px;
-    margin: 0 auto;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 25px;
-    justify-content: center;
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Microsoft YaHei", SimSun, Arial, sans-serif;
+    background: #eef0f2;
+    color: #333;
+    font-size: 13px;
+    line-height: 1.9;
   }
 
-  .member {
-    flex: 0 1 240px;               /* 不放大，可缩小，基础 240px */
+  .page {
+    width: 960px;
+    max-width: 100%;
+    margin: 20px auto;
     background: #fff;
-    border-radius: 14px;
-    text-align: center;
-    padding: 30px 20px;
-    box-shadow: 0 4px 18px rgba(0,0,0,.06);
-    transition: transform .3s, box-shadow .3s;
-  }
-  .member:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 14px 32px rgba(0,0,0,.15);
+    padding: 20px 30px 40px;
+    box-shadow: 0 0 12px rgba(0,0,0,.08);
   }
 
-  .avatar {
-    width: 100px; height: 100px;
-    border-radius: 50%;
-    margin: 0 auto 15px;
+  /* ============================================================
+     顶部：左蓝块 + 右照片墙
+     ============================================================ */
+  .top {
     display: flex;
+    gap: 15px;
+    margin-bottom: 25px;
+    height: 180px;
+  }
+
+  /* 左侧浅蓝色标题块：直接用图片做背景 */
+  .top-title {
+    flex: 0 0 220px;
+    background: url("images/title-bg.jpg") no-repeat center/cover;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
-    align-items: center;
-    font-size: 40px;
+    padding: 0 24px;
     color: #fff;
+  }
+  .top-title h1 {
+    font-size: 26px;
+    letter-spacing: 4px;
     font-weight: bold;
+    color: #fff;
+    text-shadow: 0 1px 3px rgba(0,0,0,.15);
+    margin-bottom: 12px;
   }
-  .avatar.c1 { background: linear-gradient(135deg,#ff6b6b,#ee5a6f); }
-  .avatar.c2 { background: linear-gradient(135deg,#4facfe,#00f2fe); }
-  .avatar.c3 { background: linear-gradient(135deg,#43e97b,#38f9d7); }
-  .avatar.c4 { background: linear-gradient(135deg,#fa709a,#fee140); }
-  .avatar.c5 { background: linear-gradient(135deg,#a18cd1,#fbc2eb); }
-  .avatar.c6 { background: linear-gradient(135deg,#f093fb,#f5576c); }
-
-  .member h3 { margin: 0 0 6px; color: #222; font-size: 18px; }
-  .member .role { color: #667eea; font-size: 14px; margin-bottom: 12px; }
-  .member .desc { color: #777; font-size: 13px; line-height: 1.6; }
-
-  /* 每个成员下面加社交图标 (flex 居中) */
-  .socials {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin-top: 14px;
-  }
-  .socials a {
-    display: inline-flex;
-    width: 28px; height: 28px;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-    background: #eef1f8;
-    color: #667eea;
-    text-decoration: none;
+  .top-title .en {
     font-size: 14px;
-    transition: .2s;
+    letter-spacing: 1px;
+    line-height: 1.6;
+    color: #fff;
+    opacity: .95;
   }
-  .socials a:hover { background: #667eea; color: #fff; }
+
+  /* 右侧照片拼贴墙：整张拼图直接放上去 */
+  .top-photos {
+    flex: 1;
+    background: url("images/photos-wall.jpg") no-repeat center/cover;
+  }
+
+  /* ============================================================
+     通用段落区
+     ============================================================ */
+  .section { margin-bottom: 30px; }
+
+  .section h2 {
+    font-size: 16px;
+    color: #e60012;      /* 北大青鸟红 */
+    font-weight: bold;
+    margin-bottom: 12px;
+    letter-spacing: 1px;
+  }
+
+  .section-body {
+    display: flex;
+    gap: 18px;
+    align-items: flex-start;
+  }
+  .section-body .pic {
+    flex: 0 0 300px;
+    height: 160px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  .section-body .txt {
+    flex: 1;
+    font-size: 13px;
+    line-height: 1.9;
+    color: #444;
+    text-indent: 2em;
+  }
+
+  /* 第一段纯文字（没图） */
+  .intro-text {
+    font-size: 13px;
+    line-height: 1.9;
+    color: #444;
+    text-indent: 2em;
+    margin-bottom: 30px;
+  }
+
+  /* 两段配图 */
+  .pic-party   { background-image: url("images/party.jpg"); }
+  .pic-manager { background-image: url("images/manager.jpg"); }
+
+  /* 部门风采：左图 + 文字 */
+  .pic-dept { background-image: url("images/dept.jpg"); }
+
+  /* ============================================================
+     底部链接
+     ============================================================ */
+  .bottom-links {
+    margin-top: 30px;
+    list-style: none;
+    padding-left: 10px;
+  }
+  .bottom-links li {
+    position: relative;
+    padding-left: 16px;
+    margin-bottom: 8px;
+    font-size: 13px;
+  }
+  .bottom-links li::before {
+    content: "●";
+    font-size: 10px;
+    color: #333;
+    position: absolute;
+    left: 0;
+    top: 5px;
+  }
+  .bottom-links a {
+    color: #333;
+    text-decoration: none;
+  }
+  .bottom-links a:hover {
+    color: #e60012;
+    text-decoration: underline;
+  }
 </style>
 </head>
 <body>
 
-<div class="title">
-  <h1>👥 团队风采</h1>
-  <p>一群热爱技术、乐于分享的伙伴</p>
-</div>
+<div class="page">
 
-<div class="team-wrap">
-
-  <div class="member">
-    <div class="avatar c1">张</div>
-    <h3>张明</h3>
-    <div class="role">教学总监</div>
-    <div class="desc">10 年 Java 教学经验，主导课程体系建设。</div>
-    <div class="socials"><a href="#">✉</a><a href="#">☎</a></div>
+  <!-- ========== 顶部：左蓝块 + 右照片墙 ========== -->
+  <div class="top">
+    <div class="top-title">
+      <h1>团队风采</h1>
+      <div class="en">WELFARE<br>DEVELOPMENT</div>
+    </div>
+    <div class="top-photos"></div>
   </div>
 
-  <div class="member">
-    <div class="avatar c2">李</div>
-    <h3>李雪</h3>
-    <div class="role">前端讲师</div>
-    <div class="desc">专注 Vue / React，擅长项目实战教学。</div>
-    <div class="socials"><a href="#">✉</a><a href="#">☎</a></div>
+  <!-- ========== 第一段：纯文字介绍 ========== -->
+  <p class="intro-text">
+    北大青鸟始终以人才作为企业的核心资本。为了吸引、激励和保留优秀人才，
+    公司为员工提供完善的培训与发展体系，关注员工成长；同时在兼顾市场竞争
+    力和内部公平的基础上，为员工提供全面、富有竞争力的薪酬福利体系。良好
+    的企业发展前景、广阔的个人发展平台、快乐向上的工作环境，是青鸟人一直
+    追求的核心要素。
+  </p>
+
+  <!-- ========== 我们的管理团队 ========== -->
+  <div class="section">
+    <h2>我们的管理团队</h2>
+    <div class="section-body">
+      <div class="pic pic-party"></div>
+      <div class="txt">
+        北大青鸟始终以人才作为企业的核心资本。为了吸引、激励和保留优秀人才，
+        公司为员工提供完善的培训与发展体系，关注员工成长；同时在兼顾市场竞争
+        力和内部公平的基础上，为员工提供全面、富有竞争力的薪酬福利体系。良好
+        的企业发展前景、广阔的个人发展平台、快乐向上的工作环境，是青鸟人一直
+        追求的核心要素。
+      </div>
+    </div>
   </div>
 
-  <div class="member">
-    <div class="avatar c3">王</div>
-    <h3>王强</h3>
-    <div class="role">后端讲师</div>
-    <div class="desc">前阿里工程师，精通微服务与高并发。</div>
-    <div class="socials"><a href="#">✉</a><a href="#">☎</a></div>
+  <!-- ========== 我们的部门风采 ========== -->
+  <div class="section">
+    <h2>我们的部门风采</h2>
+    <div class="section-body">
+      <div class="pic pic-dept"></div>
+      <div class="txt">
+        北大青鸟始终以人才作为企业的核心资本。为了吸引、激励和保留优秀人才，
+        公司为员工提供完善的培训与发展体系，关注员工成长；同时在兼顾市场竞争
+        力和内部公平的基础上，为员工提供全面、富有竞争力的薪酬福利体系。良好
+        的企业发展前景、广阔的个人发展平台、快乐向上的工作环境，是青鸟人一直
+        追求的核心要素。
+      </div>
+    </div>
   </div>
 
-  <div class="member">
-    <div class="avatar c4">赵</div>
-    <h3>赵敏</h3>
-    <div class="role">UI 设计师</div>
-    <div class="desc">8 年设计经验，负责学员作品集指导。</div>
-    <div class="socials"><a href="#">✉</a><a href="#">☎</a></div>
-  </div>
-
-  <div class="member">
-    <div class="avatar c5">刘</div>
-    <h3>刘洋</h3>
-    <div class="role">就业指导</div>
-    <div class="desc">对接 500+ 企业，累计输送学员 3000+。</div>
-    <div class="socials"><a href="#">✉</a><a href="#">☎</a></div>
-  </div>
-
-  <div class="member">
-    <div class="avatar c6">陈</div>
-    <h3>陈静</h3>
-    <div class="role">班主任</div>
-    <div class="desc">关注每位学员的学习与心理状态。</div>
-    <div class="socials"><a href="#">✉</a><a href="#">☎</a></div>
-  </div>
+  <!-- ========== 底部链接 ========== -->
+  <ul class="bottom-links">
+    <li><a href="javascript:;">联系我们</a></li>
+    <li><a href="javascript:;">关于我们</a></li>
+    <li><a href="javascript:;">版权声明</a></li>
+    <li><a href="javascript:;">招聘加盟</a></li>
+  </ul>
 
 </div>
 
