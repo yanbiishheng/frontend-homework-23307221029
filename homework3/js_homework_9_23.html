@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JS 作业 9-23</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Microsoft YaHei", SimSun, Arial, sans-serif;
+    background: #eef2f6;
+    color: #333;
+    line-height: 1.8;
+    padding: 30px 20px;
+  }
+  .wrap { max-width: 1000px; margin: 0 auto; }
+
+  .banner {
+    background: linear-gradient(135deg, #1d4e89, #2b6cb0);
+    color: #fff;
+    padding: 24px 32px;
+    border-radius: 10px;
+    margin-bottom: 28px;
+    box-shadow: 0 6px 18px rgba(29,78,137,.25);
+  }
+  .banner h1 { font-size: 24px; letter-spacing: 2px; }
+  .banner p { font-size: 14px; opacity: .9; margin-top: 6px; }
+
+  .task {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(16,42,67,.08);
+    margin-bottom: 28px;
+    overflow: hidden;
+  }
+  .task-head {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px 24px;
+    background: #f7fafc;
+    border-bottom: 1px solid #e8edf3;
+  }
+  .task-num {
+    display: inline-block;
+    min-width: 32px;
+    height: 32px;
+    line-height: 32px;
+    text-align: center;
+    background: #2b6cb0;
+    color: #fff;
+    border-radius: 50%;
+    font-weight: bold;
+  }
+  .task-title { font-size: 17px; font-weight: bold; color: #1d4e89; }
+  .task-body { padding: 24px; }
+
+  h3 { font-size: 15px; color: #2b6cb0; margin: 20px 0 10px; }
+  h3:first-child { margin-top: 0; }
+
+  /* 输入框通用 */
+  input[type="text"], input[type="number"] {
+    height: 38px;
+    padding: 0 12px;
+    border: 1px solid #cfd8dc;
+    border-radius: 6px;
+    font-size: 14px;
+    outline: none;
+    transition: .2s;
+    min-width: 180px;
+  }
+  input[type="text"]:focus, input[type="number"]:focus {
+    border-color: #2b6cb0;
+    box-shadow: 0 0 0 3px rgba(43,108,176,.15);
+  }
+  button {
+    height: 38px;
+    padding: 0 20px;
+    background: #2b6cb0;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: .2s;
+  }
+  button:hover { background: #1d4e89; transform: translateY(-1px); }
+
+  .row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 14px;
+  }
+  .result {
+    background: #f1f6fb;
+    border-left: 4px solid #2b6cb0;
+    padding: 12px 16px;
+    border-radius: 0 6px 6px 0;
+    font-size: 14px;
+    color: #1d4e89;
+    min-height: 44px;
+    white-space: pre-wrap;
+    word-break: break-all;
+    font-family: Consolas, Monaco, monospace;
+  }
+
+  /* ========== 动画案例 ========== */
+  .anim-box {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+  }
+  .anim-item {
+    flex: 1 1 280px;
+    background: #fafbfc;
+    border: 1px solid #e8edf3;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+  }
+  .anim-item h4 {
+    color: #1d4e89;
+    font-size: 14px;
+    margin-bottom: 16px;
+  }
+
+  /* 动画1：旋转方块 */
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+  }
+  .spinner {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto;
+    background: linear-gradient(135deg, #ff6b6b, #ee5a6f);
+    border-radius: 12px;
+    animation: spin 2s linear infinite;
+    box-shadow: 0 6px 18px rgba(238,90,111,.35);
+  }
+
+  /* 动画2：上下跳动 + 颜色渐变 */
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); background: #4facfe; }
+    50%      { transform: translateY(-30px); background: #00f2fe; }
+  }
+  .bouncer {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto;
+    border-radius: 50%;
+    animation: bounce 1s ease-in-out infinite;
+    box-shadow: 0 6px 18px rgba(79,172,254,.35);
+  }
+
+  /* ========== 时钟 ========== */
+  .clock {
+    text-align: center;
+    padding: 30px 20px;
+    background: linear-gradient(135deg, #1d4e89, #2b6cb0);
+    border-radius: 12px;
+    color: #fff;
+    margin-top: 10px;
+  }
+  .clock .date {
+    font-size: 18px;
+    opacity: .9;
+    margin-bottom: 12px;
+    letter-spacing: 1px;
+  }
+  .clock .time {
+    font-size: 48px;
+    font-weight: bold;
+    letter-spacing: 4px;
+    font-family: Consolas, Monaco, monospace;
+    text-shadow: 0 2px 10px rgba(0,0,0,.25);
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <div class="banner">
+    <h1>JS 作业 9-23</h1>
+    <p>CSS 动画 / 个税计算 / 百钱买百鸡 / 最高位 / 数字时钟</p>
+  </div>
+
+  <!-- ==================== 题目0 ==================== -->
+  <section class="task">
+    <div class="task-head">
+      <span class="task-num">0</span>
+      <span class="task-title">用 CSS 实现动画（2 个案例）</span>
+    </div>
+    <div class="task-body">
+      <div class="anim-box">
+        <div class="anim-item">
+          <h4>案例 1：旋转方块（animation + @keyframes）</h4>
+          <div class="spinner"></div>
+        </div>
+        <div class="anim-item">
+          <h4>案例 2：跳动小球（上下位移 + 颜色渐变）</h4>
+          <div class="bouncer"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 题目1 ==================== -->
+  <section class="task">
+    <div class="task-head">
+      <span class="task-num">1</span>
+      <span class="task-title">工资个税计算</span>
+    </div>
+    <div class="task-body">
+      <p style="color:#666; font-size:13px; margin-bottom:14px;">
+        规则：≤3500 不交税；3500~8000 超出部分按 2% 交税；
+        8000~20000 超出部分按 5% 交税；&gt;20000 超出部分按 10% 交税。
+      </p>
+      <div class="row">
+        <label>请输入工资（元）：</label>
+        <input type="number" id="salaryInput" placeholder="例如 12000" min="0">
+        <button onclick="calcTax()">计算个税</button>
+      </div>
+      <div class="result" id="taxResult">等待计算…</div>
+    </div>
+  </section>
+
+  <!-- ==================== 题目2 ==================== -->
+  <section class="task">
+    <div class="task-head">
+      <span class="task-num">2</span>
+      <span class="task-title">百钱买百鸡</span>
+    </div>
+    <div class="task-body">
+      <p style="color:#666; font-size:13px; margin-bottom:14px;">
+        100 元买 100 只鸡：公鸡 5 元/只，母鸡 3 元/只，小鸡 1 元 3 只。
+      </p>
+      <div class="row">
+        <button onclick="buyChicken()">计算所有买法</button>
+      </div>
+      <div class="result" id="chickenResult">点击按钮查看结果…</div>
+    </div>
+  </section>
+
+  <!-- ==================== 题目3 ==================== -->
+  <section class="task">
+    <div class="task-head">
+      <span class="task-num">3</span>
+      <span class="task-title">获取正整数的最高位</span>
+    </div>
+    <div class="task-body">
+      <p style="color:#666; font-size:13px; margin-bottom:14px;">
+        例如 123 → 1；10000 → 1；9 → 9。
+      </p>
+      <div class="row">
+        <label>请输入正整数：</label>
+        <input type="number" id="numInput" placeholder="例如 12345" min="1" step="1">
+        <button onclick="getHighestDigit()">获取最高位</button>
+      </div>
+      <div class="result" id="digitResult">等待输入…</div>
+    </div>
+  </section>
+
+  <!-- ==================== 题目4 ==================== -->
+  <section class="task">
+    <div class="task-head">
+      <span class="task-num">4</span>
+      <span class="task-title">时间显示（Date）</span>
+    </div>
+    <div class="task-body">
+      <p style="color:#666; font-size:13px; margin-bottom:14px;">
+        显示星期几、年月日、小时分钟秒。
+      </p>
+      <div class="clock">
+        <div class="date" id="clockDate">加载中…</div>
+        <div class="time" id="clockTime">--:--:--</div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<script>
+/* ============================================================
+   题目1：工资个税计算
+   规则：
+     salary ≤ 3500              → 0
+     3500 < salary ≤ 8000       → (salary - 3500) * 2%
+     8000 < salary ≤ 20000      → (8000 - 3500) * 2% + (salary - 8000) * 5%
+     salary > 20000             → (8000 - 3500) * 2% + (20000 - 8000) * 5% + (salary - 20000) * 10%
+   ============================================================ */
+function calcTaxBySalary(salary) {
+    if (salary <= 3500) {
+        return 0;
+    } else if (salary <= 8000) {
+        return (salary - 3500) * 0.02;
+    } else if (salary <= 20000) {
+        return (8000 - 3500) * 0.02 + (salary - 8000) * 0.05;
+    } else {
+        return (8000 - 3500) * 0.02
+             + (20000 - 8000) * 0.05
+             + (salary - 20000) * 0.10;
+    }
+}
+
+function calcTax() {
+    var input = document.getElementById('salaryInput');
+    var out   = document.getElementById('taxResult');
+    var salary = parseFloat(input.value);
+
+    if (isNaN(salary) || salary < 0) {
+        out.textContent = '⚠️ 请输入有效的工资金额（≥0）';
+        out.style.color = '#c0392b';
+        return;
+    }
+
+    var tax = calcTaxBySalary(salary);
+    out.style.color = '#1d4e89';
+    out.textContent =
+        '工资：' + salary.toFixed(2) + ' 元\n' +
+        '应缴个税：' + tax.toFixed(2) + ' 元\n' +
+        '税后工资：' + (salary - tax).toFixed(2) + ' 元';
+}
+
+/* ============================================================
+   题目2：百钱买百鸡
+   公鸡 x（5元/只）、母鸡 y（3元/只）、小鸡 z（1元/3只）
+   x + y + z = 100
+   5x + 3y + z/3 = 100
+   z 必须是 3 的倍数
+   ============================================================ */
+function buyChicken() {
+    var out = document.getElementById('chickenResult');
+    var results = [];
+    var count = 0;
+
+    for (var x = 0; x <= 20; x++) {          // 公鸡最多 20 只
+        for (var y = 0; y <= 33; y++) {      // 母鸡最多 33 只
+            var z = 100 - x - y;             // 小鸡数量
+            if (z < 0 || z % 3 !== 0) continue;
+            var money = 5 * x + 3 * y + z / 3;
+            if (money === 100) {
+                count++;
+                results.push(
+                    '方案 ' + count + '：' +
+                    '公鸡 ' + x + ' 只，' +
+                    '母鸡 ' + y + ' 只，' +
+                    '小鸡 ' + z + ' 只'
+                );
+            }
+        }
+    }
+
+    out.style.color = '#1d4e89';
+    if (count === 0) {
+        out.textContent = '没有找到符合条件的买法。';
+    } else {
+        out.textContent = '共找到 ' + count + ' 种买法：\n\n' + results.join('\n');
+    }
+}
+
+/* ============================================================
+   题目3：获取正整数的最高位
+   方法：不断除以 10，直到小于 10
+   ============================================================ */
+function getHighestDigitOf(num) {
+    // 保证是正整数
+    num = Math.floor(Math.abs(num));
+    while (num >= 10) {
+        num = Math.floor(num / 10);
+    }
+    return num;
+}
+
+function getHighestDigit() {
+    var input = document.getElementById('numInput');
+    var out   = document.getElementById('digitResult');
+    var val   = input.value.trim();
+
+    if (val === '' || !/^\d+$/.test(val) || Number(val) <= 0) {
+        out.textContent = '⚠️ 请输入一个正整数（如 12345）';
+        out.style.color = '#c0392b';
+        return;
+    }
+
+    var num = parseInt(val, 10);
+    var highest = getHighestDigitOf(num);
+
+    out.style.color = '#1d4e89';
+    out.textContent =
+        '输入数字：' + num + '\n' +
+        '最高位数字：' + highest;
+}
+
+/* ============================================================
+   题目4：数字时钟（Date）
+   显示：星期几、年月日、时分秒
+   ============================================================ */
+(function initClock() {
+    var weekMap = ['星期日','星期一','星期二','星期三','星期四','星期五','星期六'];
+
+    function pad(n) {
+        return n < 10 ? '0' + n : '' + n;
+    }
+
+    function updateClock() {
+        var now = new Date();
+        var year    = now.getFullYear();
+        var month   = now.getMonth() + 1;    // 0~11 → 1~12
+        var day     = now.getDate();
+        var week    = weekMap[now.getDay()];
+        var hour    = now.getHours();
+        var minute  = now.getMinutes();
+        var second  = now.getSeconds();
+
+        document.getElementById('clockDate').textContent =
+            year + '年' + pad(month) + '月' + pad(day) + '日  ' + week;
+
+        document.getElementById('clockTime').textContent =
+            pad(hour) + ':' + pad(minute) + ':' + pad(second);
+    }
+
+    updateClock();                  // 立即执行一次
+    setInterval(updateClock, 1000); // 每秒刷新
+})();
+</script>
+
+</body>
+</html>
